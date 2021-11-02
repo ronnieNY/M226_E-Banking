@@ -16,9 +16,10 @@ public class SQL {
      */
     public SQL() {
         try {
-            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres",
-                    "root", "eBankingPassWD22");
-        } catch (SQLException throwables) {
+            Class.forName("org.mariadb.jdbc.Driver");
+            connection = DriverManager.getConnection("jdbc:mariadb://davidemarcoli.de:3306/davidema_eBanking",
+                    "davidema_ronnieha", "ebanking1234");
+        } catch (Exception throwables) {
             throwables.printStackTrace();
         }
     }
