@@ -52,6 +52,11 @@ public class Controller {
     @FXML
     public Label registerErrorLabel;
 
+    /**
+     *The methode login gets called and a user gets returnt.
+     * If the user is null the user gets notified.
+     * If the user is not null the view gets disabled and a new instance of ebanking(USER) gets created.
+     */
     @FXML
     public void login() {
         User user = database.login(loginContractNumberInput.getText(), loginPasswordInput.getText());
@@ -64,6 +69,12 @@ public class Controller {
         }
     }
 
+    /**
+     *Create a new user by the data from register.
+     * The methode register gets called.
+     * The user gets tested if its null.
+     * If the user is not null, the register view is exited and a new instance of ebanking(USER) is created.
+     */
     @FXML
     public void register() {
         User user = database.register(
@@ -82,12 +93,18 @@ public class Controller {
         }
     }
 
+    /**
+     *Switch the view from login to the view of register.
+     */
     @FXML
     public void switchRegister() {
         loginPane.setVisible(false);
         registerPane.setVisible(true);
     }
 
+    /**
+     * Switch the view from register to the view of login.
+     */
     @FXML
     public void switchLogin() {
         registerPane.setVisible(false);
