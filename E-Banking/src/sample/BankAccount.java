@@ -2,8 +2,8 @@ package sample;
 
 public class BankAccount {
 
-    private String iban;
-    private double credit;
+    public String iban;
+    public double credit;
 
     public BankAccount(String iban, double credit) {
         this.iban = iban;
