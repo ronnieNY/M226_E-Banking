@@ -60,6 +60,8 @@ public class SQL {
         return null;
     }
 
+
+
     /**
      * This methode is used to register a new user.
      *
