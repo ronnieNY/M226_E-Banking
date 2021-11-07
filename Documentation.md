@@ -22,6 +22,7 @@
     
  4. At the end we sat down to the documentation and created all the rest of the documents and finished the project. 
 
+![image](https://user-images.githubusercontent.com/69907003/140661259-7b604d18-cc59-444a-8f8e-09a48f07efab.png)
 
 ![image](https://user-images.githubusercontent.com/69907003/140660220-67ee177a-731f-496a-81dc-e21d781f170e.png)
 
