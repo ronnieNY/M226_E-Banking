@@ -1,15 +1,15 @@
 package sample;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
-
 import java.sql.Date;
 
 public class Controller {
 
-    SQL database = new SQL();
-    EBanking eBanking;
+    private final SQL database = new SQL();
+    private ObservableList<String> bankAccounts;
 
     // Login
     @FXML
@@ -52,20 +52,29 @@ public class Controller {
     @FXML
     public Label registerErrorLabel;
 
+    // Bank Accounts
+    @FXML
+    public AnchorPane overviewPane;
+
+    @FXML
+    public ListView bankAccountTable;
+
     /**
      * The methode login gets called and a user gets returned.
      * If the user is null the user gets notified.
-     * If the user is not null the view gets disabled and a new instance of ebanking(USER) gets created.
+     * If the user is not null the view gets disabled and a new instance of eBanking(USER) gets created.
      */
     @FXML
     public void login() {
         User user = database.login(loginContractNumberInput.getText(), loginPasswordInput.getText());
         if (user == null) {
-            loginErrorLabel.setText("Vertragsnummer oder Passwort ist falsch.");
+            loginErrorLabel.setText("wrong contract number or password");
         }
         else {
             loginPane.setVisible(false);
-            eBanking = new EBanking(user);
+            overviewPane.setVisible(true);
+            bankAccounts = database.getBankAccounts(user);
+            bankAccountTable.setItems(bankAccounts);
         }
     }
 
@@ -73,7 +82,7 @@ public class Controller {
      * Create a new user by the data from register.
      * The methode register gets called.
      * The user gets tested if its null.
-     * If the user is not null, the register view is exited and a new instance of ebanking(USER) is created.
+     * If the user is not null, the register view is exited and a new instance of eBanking(USER) is created.
      */
     @FXML
     public void register() {
@@ -85,11 +94,13 @@ public class Controller {
                 Date.valueOf(registerBirthDateInput.getValue()),
                 registerPasswordInput.getText());
         if (user == null) {
-            registerErrorLabel.setText("Fehler");
+            registerErrorLabel.setText("Error");
         }
         else {
             registerPane.setVisible(false);
-            eBanking = new EBanking(user);
+            overviewPane.setVisible(true);
+            bankAccounts = database.getBankAccounts(user);
+            bankAccountTable.setItems(bankAccounts);
         }
     }
 

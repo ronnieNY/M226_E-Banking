@@ -1,6 +1,10 @@
 package sample;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.sql.*;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -127,6 +131,21 @@ public class SQL {
             throwables.printStackTrace();
         }
         return contractNumber;
+    }
+
+    public ObservableList<String> getBankAccounts(User user) {
+        ObservableList<String> bankAccounts = FXCollections.observableArrayList();
+        try {
+            statement = connection.createStatement();
+            rs = statement.executeQuery("SELECT iban FROM bank_account " +
+                    "WHERE id_user='" + user.getContractNumber() + "'");
+            while (rs.next()) {
+                bankAccounts.add(rs.getString("iban"));
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return bankAccounts;
     }
 
 }
